@@ -1,2 +1,3 @@
 # flykiwi
-Flight booking system
+
+A full-stack flight booking system.
