@@ -1,0 +1,81 @@
+@font-face {
+  font-family: source-serif-pro-semibold;
+  src: url('../../assets/SourceSerifPro-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: source-serif-pro-light;
+  src: url('../../assets/SourceSerifPro-Light.ttf');
+}
+
+.SignupForm {
+  color: #abbbf8;
+  position: relative;
+}
+
+.SignupForm form {
+  background-color: #18212b;
+  padding: 1.3rem;
+  display: grid;
+  gap: 1.3rem;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.SignupForm input {
+  background: none;
+  border: 2px solid #abbbf8;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.25rem;
+  color: white;
+  padding: 2rem 0.5rem 1.3rem 0.8rem;
+}
+
+.SignupForm label {
+  font-family: source-serif-pro-semibold;
+  position: absolute;
+  margin: 0.3rem 0 0 0.5rem;
+}
+
+
+.signup-password-area {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.submit-signup {
+  position: absolute;
+  top: 13.4rem;
+  left: 2.2rem;
+  color:#18212b;
+  background-color: #a7bd03;
+  border: none;
+  padding: 0.8rem 0 0.8rem 0;
+  width: 97%;
+  font-size: 1.4rem;
+  font-family: source-serif-pro-semibold;
+  transition: all 0.15s;
+  cursor: pointer;
+}
+
+.submit-signup:hover {
+  background-color: #c5db20;
+}
+
+.submit-signup:active {
+  background-color: #718007;
+}
+
+.login-option {
+  font-family: source-serif-pro-light;
+  color: white;
+  margin-top: 3.5rem;
+  margin-left: 18rem;
+}
+
+.login-option a {
+  font-family: source-serif-pro-semibold;
+  color: #abbbf8;
+  cursor: pointer;
+}
+
