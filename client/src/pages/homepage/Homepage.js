@@ -1,6 +1,6 @@
 import './Homepage.css';
 import Navbar from '../../components/navbar/Navbar';
-import SignupForm from '../../components/signup-form/SignupForm';
+import SignupForm from '../../components/homepage-form/HomepageForm';
 import homePhoto from './hero-img.jpg';
 import Footer from '../../components/footer/Footer';
 
@@ -9,8 +9,12 @@ function Homepage() {
     <div className='Homepage'>
       <Navbar>
         <div className='nav-buttons'>
-          <button className='about-nav'>about</button>
-          <button className='login-nav'>Login</button>
+          <a href='/about' className='about-nav'>
+            about
+          </a>
+          <a href='/login' className='login-nav'>
+            Login
+          </a>
         </div>
       </Navbar>
       <main>

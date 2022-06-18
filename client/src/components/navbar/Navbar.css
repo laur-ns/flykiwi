@@ -16,7 +16,13 @@
 .Navbar {
   display: flex;
   justify-content: center;
+  padding-top: 0.7rem;
   width: 100%;
+  background-color: #1f2d3a;
+}
+
+.navbar-container * {
+  text-decoration: none;
 }
 
 .navbar-container {
@@ -26,7 +32,7 @@
   width: 1024px;
   color: white;
   padding: 0 2rem 0.5rem 2rem;
-  border-bottom: 1px solid #abbbf8;
+  border-bottom: 1px solid #9eace2;
 }
 
 .logo-container {
@@ -46,43 +52,11 @@
   font-family: dancing-script;
   font-size: 2.5rem;
   color: #a7bd03;
+  text-decoration: none;
 }
 
 .kiwi-logo-text {
   font-family: asap;
   margin-left: -0.5rem;
   font-size: 2.2rem;
-}
-
-.nav-buttons {
-  display: flex;
-  gap: 3rem;
-}
-
-.nav-buttons button {
-  background: none;
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-family: source-serif-pro-semibold;
-}
-
-.about-nav:hover {
-  text-decoration: underline;
-}
-
-.about-nav {
-  color: #abbbf8;
-  border: none;
-}
-
-.login-nav {
-  color: #a7bd03;
-  border: 2px solid #a7bd03;
-  padding: 0.4rem 1.1rem 0.4rem 1.1rem;
-  transition: all 0.15s;
-}
-
-.login-nav:hover {
-  background-color: #a7bd03;
-  color: white;
 }

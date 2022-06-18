@@ -6,8 +6,8 @@ footer {
   width: 100%;
   background-color: #18212b;
   font-family: source-serif-semibold;
-  position: fixed;
-  bottom: 0;
+  /* position: fixed;
+  bottom: 0; */
   padding: 2rem;
   display: flex;
   justify-content: center;

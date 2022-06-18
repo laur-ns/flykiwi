@@ -9,7 +9,7 @@
 }
 
 .SignupForm {
-  color: #abbbf8;
+  color: #9eace2;
   position: relative;
 }
 
@@ -24,7 +24,7 @@
 
 .SignupForm input {
   background: none;
-  border: 2px solid #abbbf8;
+  border: 2px solid #9eace2;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.25rem;
   color: white;
@@ -46,12 +46,12 @@
 .submit-signup {
   position: absolute;
   top: 13.4rem;
-  left: 2.2rem;
+  left: 7.2rem;
   color:#18212b;
   background-color: #a7bd03;
   border: none;
   padding: 0.8rem 0 0.8rem 0;
-  width: 97%;
+  width: 77%;
   font-size: 1.4rem;
   font-family: source-serif-pro-semibold;
   transition: all 0.15s;
@@ -70,12 +70,12 @@
   font-family: source-serif-pro-light;
   color: white;
   margin-top: 3.5rem;
-  margin-left: 18rem;
+  margin-left: 19rem;
 }
 
 .login-option a {
   font-family: source-serif-pro-semibold;
-  color: #abbbf8;
+  color: #9eace2;
   cursor: pointer;
 }
 
