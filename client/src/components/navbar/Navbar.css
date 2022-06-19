@@ -21,11 +21,8 @@
   background-color: #1f2d3a;
 }
 
-.navbar-container * {
-  text-decoration: none;
-}
-
 .navbar-container {
+  text-decoration: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -44,6 +41,7 @@
 
 .kiwi-image {
   background-image: url('./kiwi-logo.svg');
+  background-repeat: no-repeat;
   height: 2.5rem;
   width: 2.8rem;
 }
