@@ -1,4 +1,5 @@
 import { Express, Request, Response, NextFunction } from 'express';
+import { createUser } from './controllers/users.controller';
 // routes will import controllers
 
 function routes(app: Express) {
@@ -11,18 +12,7 @@ function routes(app: Express) {
   });
 
   // registering
-  app.post('/api/users', async (req, res) => {
-    try {
-      // get data from req.body
-      // check if user exists
-      // bcrypt user password
-      // enter new user inside db
-      // generate jwt token
-    } catch (e) {
-      console.log(e);
-      res.status(500).send('Server Error');
-    }
-  });
+  app.post('/api/users', createUser);
 }
 
 export default routes;

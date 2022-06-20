@@ -1,6 +1,12 @@
 import { Pool } from 'pg';
 
-const pool: Pool = new Pool();
+const pool: Pool = new Pool({
+  user: 'postgres',
+  password: 'password',
+  host: '127.0.0.1',
+  port: 5432,
+  database: 'flykiwi',
+});
 
 async function query(text: any, params: any) {
   const start: number = Date.now();
