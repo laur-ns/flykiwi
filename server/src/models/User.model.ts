@@ -1,4 +1,4 @@
-import query from '../db/index';
+import query from '../db/database';
 
 class User {
   constructor(private username: string, private password: string) {}

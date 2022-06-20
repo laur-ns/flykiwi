@@ -20,4 +20,8 @@ async function query(text: any, params: any) {
   }
 }
 
+// text will be something like 'SELECT * FROM $1'
+// params something like this array: ['users'] i.e. the table name
+// $1 => replaced by users in final query
+
 export default query;
