@@ -3,12 +3,14 @@ import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import spinner from '../../assets/loading-spinner.svg';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-function Login() {
+function Login({ setAuth }) {
   const [isDisabled, setDisabled] = useState(false);
   async function test() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
+        setAuth(true);
         setDisabled(false);
       }, 3000);
     });
@@ -51,7 +53,7 @@ function Login() {
             )}
           </div>
           <div className='Login__signup-option'>
-            don't have an account? <a href='/signup'>signup</a>
+            don't have an account? <Link to='/signup'>signup</Link>
           </div>
         </form>
       </main>

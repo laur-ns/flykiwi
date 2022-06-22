@@ -1,15 +1,16 @@
 import './Footer.css';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (
     <footer>
       <div className='footer-links-wrapper'>
-        <a href='/' className='about'>
+        <Link to='/' className='about'>
           about
-        </a>
-        <a href='/' className='github'>
+        </Link>
+        <Link to='/' className='github'>
           github
-        </a>
+        </Link>
       </div>
     </footer>
   );

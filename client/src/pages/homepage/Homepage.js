@@ -2,19 +2,20 @@ import './Homepage.css';
 import Navbar from '../../components/navbar/Navbar';
 import HomepageForm from '../../components/homepage-form/HomepageForm';
 import homePhoto from './hero-img.jpg';
+import { Link } from 'react-router-dom';
 import Footer from '../../components/footer/Footer';
 
-function Homepage() {
+function Homepage({ setAuth }) {
   return (
     <div className='Homepage'>
       <Navbar>
         <div className='nav-buttons'>
-          <a href='/about' className='about-nav'>
+          <Link to='/about' className='about-nav'>
             about
-          </a>
-          <a href='/login' className='login-nav'>
+          </Link>
+          <Link to='/login' className='login-nav'>
             Login
-          </a>
+          </Link>
         </div>
       </Navbar>
       <main>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import './HomepageForm.css';
 import spinner from '../../assets/loading-spinner.svg';
+import { Link } from 'react-router-dom';
 
 function SignupForm() {
   const [isDisabled, setDisabled] = useState(false);
@@ -57,7 +58,7 @@ function SignupForm() {
         )}
       </form>
       <div className='login-option'>
-        already have an account? <a href='/login'>login</a>
+        already have an account? <Link to='/login'>login</Link>
       </div>
     </div>
   );
