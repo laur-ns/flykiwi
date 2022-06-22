@@ -43,9 +43,9 @@ export default function App() {
           path='/signup'
           element={
             !isAuthenticated ? (
-              <Signup />
+              <Signup setAuth={setAuth} />
             ) : (
-              <Navigate to='/login' replace={true} />
+              <Navigate to='/managebookings' replace={true} />
             )
           }
         />

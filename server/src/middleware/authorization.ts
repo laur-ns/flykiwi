@@ -1,4 +1,4 @@
-//@ts-nocheck
+//@ts-nocheck <- issues processing environment variables, no time to figure out why
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 require('dotenv').config();

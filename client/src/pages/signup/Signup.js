@@ -19,16 +19,9 @@ function Signup({ setAuth }) {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
 
-  async function test() {
-    return new Promise(() => {
-      setTimeout(() => {
-        setDisabled(false);
-      }, 3000);
-    });
-  }
-
   async function handleSignupSubmit(e) {
     e.preventDefault();
+    setDisabled(true);
     if (password !== confirmPassword) {
       alert('Passwords do not match');
     }
@@ -41,12 +34,11 @@ function Signup({ setAuth }) {
         body: JSON.stringify(body),
       });
 
-      const parseResponse = await response.json();
+      const parsedResponse = await response.json();
 
-      console.log(parseResponse);
-
-      setDisabled(true);
-      await test();
+      localStorage.setItem('token', parsedResponse.token);
+      setDisabled(false);
+      setAuth(true);
     } catch (e) {
       console.log(e.message);
     }

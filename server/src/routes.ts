@@ -13,7 +13,7 @@ function routes(app: Express) {
   });
 
   // registering
-  app.post('/auth/users', createUser);
+  app.post('/auth/register', createUser);
 
   // login
   app.post('/auth/login', loginUser);

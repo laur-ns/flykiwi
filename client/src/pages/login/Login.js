@@ -7,19 +7,38 @@ import { Link } from 'react-router-dom';
 
 function Login({ setAuth }) {
   const [isDisabled, setDisabled] = useState(false);
-  async function test() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        setAuth(true);
-        setDisabled(false);
-      }, 3000);
-    });
-  }
+  const [inputs, setInputs] = useState({
+    username: '',
+    password: '',
+  });
+
+  const { username, password } = inputs;
+
   async function handleLoginSubmit(e) {
     e.preventDefault();
     setDisabled(true);
-    await test();
+    try {
+      const body = { username, password };
+      const response = await fetch('http://localhost:8000/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+
+      const parsedResponse = await response.json();
+      localStorage.setItem('token', parsedResponse.token);
+
+      setDisabled(false);
+      setAuth(true);
+    } catch (e) {
+      console.log(e.message);
+    }
   }
+
+  const onChange = (e) => {
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className='Login'>
       <Navbar />
@@ -29,15 +48,25 @@ function Login({ setAuth }) {
             <label htmlFor='username-login' className='Login__username-label'>
               Username
             </label>
-            <input type='text' name='username-login' id='username-login' />
+            <input
+              type='text'
+              name='username'
+              id='username-login'
+              required
+              value={username}
+              onChange={onChange}
+            />
             <div className='Login__input-wrapper'>
               <label htmlFor='password-login' className='Login__password-label'>
                 Password
               </label>
               <input
                 type='password'
-                name='password-login'
+                name='password'
                 id='password-login'
+                required
+                value={password}
+                onChange={onChange}
               />
             </div>
           </div>
