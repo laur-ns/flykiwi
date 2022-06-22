@@ -5,7 +5,7 @@ import User from '../models/User.model';
 import bcrypt from 'bcrypt';
 import jwtGenerator from '../utils/jwtGenerator';
 
-async function createUser(req: Request, res: Response, next: NextFunction) {
+async function createUser(req: Request, res: Response) {
   try {
     // get data from req.body
     const username: string = req.body.username;
@@ -36,7 +36,7 @@ async function createUser(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-async function loginUser(req: Request, res: Response, next: NextFunction) {
+async function loginUser(req: Request, res: Response) {
   try {
     // get data from req.body
     const username: string = req.body.username;
@@ -53,13 +53,22 @@ async function loginUser(req: Request, res: Response, next: NextFunction) {
     if (!isValidPassword) {
       return res.status(401).json('Invalid credentials.');
     }
-    // give jwt token
-    const token = jwtGenerator(newUser.user_id);
-    res.json(token);
+    // provide jwt token
+    const token = jwtGenerator(result.user_id);
+    res.json({ token });
   } catch (e) {
     console.log(e);
     res.status(500).send('Server Error');
   }
 }
 
-export { createUser, loginUser };
+async function verifyUser(req: Request, res: Response) {
+  try {
+    res.json(true);
+  } catch (e) {
+    console.log(e);
+    res.status(500).send('Server Error');
+  }
+}
+
+export { createUser, loginUser, verifyUser };

@@ -1,5 +1,10 @@
-import { Express, Request, Response, NextFunction } from 'express';
-import { createUser, loginUser } from './controllers/users.controller';
+import { Express } from 'express';
+import { authorize } from './middleware/authorization';
+import {
+  createUser,
+  loginUser,
+  verifyUser,
+} from './controllers/users.controller';
 // routes will import controllers
 
 function routes(app: Express) {
@@ -7,15 +12,14 @@ function routes(app: Express) {
     res.send('Hello World!');
   });
 
-  app.get('/index', (req, res) => {
-    res.send('post world!');
-  });
-
   // registering
   app.post('/auth/users', createUser);
 
   // login
   app.post('/auth/login', loginUser);
+
+  // verify credentials
+  app.get('/auth/verify', [authorize, verifyUser]);
 }
 
 export default routes;

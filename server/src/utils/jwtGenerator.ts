@@ -6,5 +6,5 @@ export default function jwtGenerator(username: string) {
     user: username,
   };
   // @ts-ignore
-  return jwt.sign(payload, process.env.jwtSecret, { expiresIn: '1hr' });
+  return jwt.sign(payload, process.env.jwtSecret, { expiresIn: '2h' });
 }
