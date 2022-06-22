@@ -1,13 +1,13 @@
 import query from '../db/database';
 
 class User {
-  constructor(private username: string, private password: string) {}
+  constructor(public username: string, public password: string) {}
 
   async insertUser() {
     try {
       const { rows } = await query(
         `INSERT INTO users(username, password)
-         VALUES ($1, $2)`,
+         VALUES ($1, $2) RETURNING *`,
         [this.username, this.password]
       );
       return rows;
@@ -16,10 +16,10 @@ class User {
     }
   }
 
-  async findUserByName() {
+  static async findUser(username: string) {
     try {
       const { rows } = await query(`SELECT * FROM users WHERE username = $1`, [
-        this.username,
+        username,
       ]);
       return rows;
     } catch (e) {

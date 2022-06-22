@@ -1,5 +1,5 @@
 import { Express, Request, Response, NextFunction } from 'express';
-import { createUser } from './controllers/users.controller';
+import { createUser, loginUser } from './controllers/users.controller';
 // routes will import controllers
 
 function routes(app: Express) {
@@ -12,7 +12,10 @@ function routes(app: Express) {
   });
 
   // registering
-  app.post('/api/users', createUser);
+  app.post('/auth/users', createUser);
+
+  // login
+  app.post('/auth/login', loginUser);
 }
 
 export default routes;
