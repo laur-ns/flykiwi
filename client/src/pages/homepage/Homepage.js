@@ -21,7 +21,7 @@ function Homepage({ setAuth }) {
       <main>
         <div className='main-container'>
           <img src={homePhoto} alt='Homepage' className='hero-image' />
-          <HomepageForm className='.signup-form-wrapper' />
+          <HomepageForm setAuth={setAuth} className='.signup-form-wrapper' />
           <h1 className='slogan'>
             <span>Fly</span> with class.
           </h1>

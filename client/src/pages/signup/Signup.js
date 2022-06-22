@@ -4,6 +4,7 @@ import Footer from '../../components/footer/Footer';
 import spinner from '../../assets/loading-spinner.svg';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 function Signup({ setAuth }) {
   const [isDisabled, setDisabled] = useState(false);
@@ -23,11 +24,12 @@ function Signup({ setAuth }) {
     e.preventDefault();
     setDisabled(true);
     if (password !== confirmPassword) {
-      alert('Passwords do not match');
+      toast.error('Passwords do not match');
+      setDisabled(false);
+      return;
     }
     try {
       const body = { username, password };
-
       const response = await fetch('http://localhost:8000/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -36,9 +38,15 @@ function Signup({ setAuth }) {
 
       const parsedResponse = await response.json();
 
-      localStorage.setItem('token', parsedResponse.token);
+      if (parsedResponse.token) {
+        localStorage.setItem('token', parsedResponse.token);
+        setAuth(true);
+        toast.success('Account created');
+      } else {
+        setAuth(false);
+        toast.error(parsedResponse);
+      }
       setDisabled(false);
-      setAuth(true);
     } catch (e) {
       console.log(e.message);
     }
