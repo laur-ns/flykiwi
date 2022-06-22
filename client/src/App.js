@@ -5,6 +5,8 @@ import Signup from './pages/signup/Signup';
 import ManageBookings from './pages/manage-bookings/ManageBookings';
 import './App.css';
 import { useState, useEffect } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);
@@ -15,7 +17,7 @@ export default function App() {
 
   useEffect(() => {
     isAuth();
-  }, []);
+  });
 
   async function isAuth() {
     try {
@@ -81,6 +83,17 @@ export default function App() {
           }
         />
       </Routes>
+      <ToastContainer
+        position='top-center'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </BrowserRouter>
   );
 }

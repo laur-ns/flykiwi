@@ -4,6 +4,8 @@ import Footer from '../../components/footer/Footer';
 import spinner from '../../assets/loading-spinner.svg';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login({ setAuth }) {
   const [isDisabled, setDisabled] = useState(false);
@@ -26,10 +28,18 @@ function Login({ setAuth }) {
       });
 
       const parsedResponse = await response.json();
-      localStorage.setItem('token', parsedResponse.token);
+
+      if (parsedResponse.token) {
+        // if token exists
+        localStorage.setItem('token', parsedResponse.token);
+        toast.success('Login successful');
+        setAuth(true);
+      } else {
+        setAuth(false);
+        toast.error(parsedResponse);
+      }
 
       setDisabled(false);
-      setAuth(true);
     } catch (e) {
       console.log(e.message);
     }
