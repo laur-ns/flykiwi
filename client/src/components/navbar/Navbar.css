@@ -22,17 +22,17 @@
 }
 
 .navbar-container {
-  text-decoration: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 1024px;
-  color: white;
   padding: 0 2rem 0.5rem 2rem;
   border-bottom: 1px solid #9eace2;
 }
 
 .logo-container {
+  color: white;
+  text-decoration: none;
   display: flex;
   align-items: center;
   gap: 0.7rem;

@@ -4,7 +4,7 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import ManageBookings from './pages/manage-bookings/ManageBookings';
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);
@@ -12,6 +12,26 @@ export default function App() {
   const setAuth = (bool) => {
     setAuthenticated(bool);
   };
+
+  useEffect(() => {
+    isAuth();
+  }, []);
+
+  async function isAuth() {
+    try {
+      const response = await fetch('http://localhost:8000/auth/verify', {
+        method: 'GET',
+        headers: { token: localStorage.token },
+      });
+
+      const parsedResponse = await response.json();
+      parsedResponse === true
+        ? setAuthenticated(true)
+        : setAuthenticated(false);
+    } catch (e) {
+      console.log(e.message);
+    }
+  }
 
   return (
     <BrowserRouter>
