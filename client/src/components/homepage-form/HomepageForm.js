@@ -1,9 +1,25 @@
+import { useState } from 'react';
 import './HomepageForm.css';
+import spinner from '../../assets/loading-spinner.svg';
 
 function SignupForm() {
+  const [isDisabled, setDisabled] = useState(false);
+  async function test() {
+    return new Promise(() => {
+      setTimeout(() => {
+        setDisabled(false);
+      }, 3000);
+    });
+  }
+  async function handleSignupSubmit(e) {
+    e.preventDefault();
+    setDisabled(true);
+    await test();
+  }
+
   return (
     <div className='SignupForm'>
-      <form action='' method='post'>
+      <form action='' method='post' onSubmit={handleSignupSubmit}>
         <label htmlFor='username-signup' className='username-label'>
           Username
         </label>
@@ -26,9 +42,19 @@ function SignupForm() {
             <input type='password' name='confirm-signup' id='confirm-signup' />
           </div>
         </div>
-        <button type='submit' className='submit-signup'>
-          Sign up
-        </button>
+        {isDisabled ? (
+          <button type='submit' className='submit-signup' disabled>
+            <img
+              src={spinner}
+              alt='loading'
+              className='loading-spinner--homepage'
+            />
+          </button>
+        ) : (
+          <button type='submit' className='submit-signup '>
+            Sign up
+          </button>
+        )}
       </form>
       <div className='login-option'>
         already have an account? <a href='/login'>login</a>

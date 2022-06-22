@@ -56,14 +56,27 @@
   font-family: source-serif-pro-semibold;
   transition: all 0.15s;
   cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.loading-spinner--homepage {
+  filter: invert(1);
+  height: 1.85rem;
+}
+
+.submit-signup:disabled {
+  cursor: default;
+  background-color:#97a810;
+}
+
+.submit-signup:hover:disabled {
+  cursor: default;
+  background-color:#97a810;
 }
 
 .submit-signup:hover {
   background-color: #c5db20;
-}
-
-.submit-signup:active {
-  background-color: #718007;
 }
 
 .login-option {

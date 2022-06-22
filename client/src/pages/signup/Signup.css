@@ -8,7 +8,7 @@
   src: url('../../assets/SourceSerifPro-Light.ttf');
 }
 
-.Login {
+.Signup {
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -16,13 +16,13 @@
 }
 
 
-.Login main {
+.Signup main {
   color: #9eace2;
   display: grid;
   place-items: center;
 }
 
-.Login form {
+.Signup form {
   width: 35%;
   min-width: 450px;
   display: flex;
@@ -31,7 +31,7 @@
   margin-bottom: 2rem;
 }
 
-.Login__inputs-wrapper {
+.Signup__inputs-wrapper {
   background-color: #18212b;
   width: 100%;
   padding: 1.3rem;
@@ -39,7 +39,7 @@
   gap: 1.3rem;
 }
 
-.Login input {
+.Signup input {
   background: none;
   border: 2px solid #9eace2;
   font-family: Arial, Helvetica, sans-serif;
@@ -49,18 +49,18 @@
   padding: 2rem 0.5rem 1.3rem 0.8rem;
 }
 
-.Login label {
+.Signup label {
   font-family: source-serif-pro-semibold;
   position: absolute;
   margin: 0.3rem 0 0 0.5rem;
 }
 
-.Login__login-button-wrapper {
+.Signup__Signup-button-wrapper {
   width: 93%;
   position: relative;
 }
 
-.Login__login-button {
+.Signup__Signup-button {
   position: absolute;
   top: -0.5rem;
   color:#18212b;
@@ -76,21 +76,21 @@
   cursor: pointer;
 }
 
-.Login__login-button:disabled {
+.Signup__Signup-button:disabled {
   cursor: default;
   background-color:#97a810;
 }
 
-.Login__login-button:hover:disabled {
+.Signup__Signup-button:hover:disabled {
   cursor: default;
   background-color:#97a810;
 }
 
-.Login__login-button:hover {
+.Signup__Signup-button:hover {
   background-color: #c5db20;
 }
 
-.Login__signup-option {
+.Signup__signup-option {
   font-family: source-serif-pro-light;
   color: rgb(243, 243, 243);
   margin-top: 4.4rem;
@@ -98,13 +98,13 @@
   align-self: end;
 }
 
-.Login__signup-option a {
+.Signup__signup-option a {
   font-family: source-serif-pro-semibold;
   color: #9eace2;
   cursor: pointer;
 }
 
 .loading-spinner {
-  filter: invert(1) ;
+  filter: invert(1);
   height: 1.85rem;
 }

@@ -1,0 +1,15 @@
+.ManageBookings main {
+  height: 100%;
+  width: 100%;
+  flex: 1 1 auto;
+  display: grid;
+  place-items: center;
+  padding: 2rem 0 2rem 0;
+}
+
+.ManageBookings__main-wrapper {
+  height: 100%;
+  width: 100%;
+  max-width: 1024px;
+  display: grid;
+}

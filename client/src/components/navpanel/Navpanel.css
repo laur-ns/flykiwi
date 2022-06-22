@@ -1,0 +1,30 @@
+@font-face {
+  font-family: fira-sans;
+  src: url('../../assets/FiraSans-Regular.ttf');
+}
+
+.Navpanel {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.7rem;
+  width: 100%;
+  background-color: #1f2d3a;
+}
+
+.Navpanel__container {
+  width: 100%;
+  max-width: 1024px;
+  display: flex;
+  gap: 4rem;
+}
+
+.Navpanel__link {
+  color: #abbbf8;
+  text-decoration: none;
+  font-family: fira-sans;
+}
+
+.Navpanel__link.active {
+  color: white;
+  border-bottom: 2px solid #9eb614;
+}
