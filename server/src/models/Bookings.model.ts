@@ -16,6 +16,18 @@ class Bookings {
       throw e;
     }
   }
+
+  static async deleteBooking(reference_id: string) {
+    try {
+      const { rows } = await query(
+        `DELETE FROM flight_bookings WHERE reference_id = $1`,
+        [reference_id]
+      );
+      return rows;
+    } catch (e) {
+      throw e;
+    }
+  }
 }
 
 export default Bookings;

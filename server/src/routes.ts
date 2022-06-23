@@ -14,7 +14,7 @@ import {
   getFlights,
   getFlightsWithin7Days,
 } from './controllers/flights.controller';
-import { bookFlight } from './controllers/bookings.controller';
+import { bookFlight, removeBooking } from './controllers/bookings.controller';
 
 function routes(app: Express) {
   app.get('/', (req, res) => {
@@ -56,6 +56,9 @@ function routes(app: Express) {
 
   // bookings
   app.post('/user/bookings', [authorize, bookFlight]);
+
+  // delete booking
+  app.delete('/user/bookings', [authorize, removeBooking]);
 }
 
 export default routes;

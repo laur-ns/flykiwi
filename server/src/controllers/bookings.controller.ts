@@ -11,10 +11,22 @@ async function bookFlight(req: Request, res: Response) {
     const flight_id: string = req.body.flight_id;
 
     await Bookings.insertBooking(reference_id, user_id, flight_id);
+    res.status(200).json(reference_id);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+async function removeBooking(req: Request, res: Response) {
+  try {
+    const reference_id: string = req.body.reference_id;
+    console.log(reference_id);
+
+    await Bookings.deleteBooking(reference_id);
     res.status(200).send();
   } catch (e) {
     console.error(e);
   }
 }
 
-export { bookFlight };
+export { bookFlight, removeBooking };
