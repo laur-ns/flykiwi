@@ -1,20 +1,31 @@
-import query from '../db/database';
+import { add, format, parseISO } from 'date-fns';
+import { Request, Response } from 'express';
+import Flights from '../models/Flights.model';
 
-class Flights {
-  constructor(public username: string, public password: string) {}
-
-  // async insertUser() {
-  //   try {
-  //     const { rows } = await query(
-  //       `INSERT INTO users(username, password)
-  //        VALUES ($1, $2) RETURNING *`,
-  //       [this.username, this.password]
-  //     );
-  //     return rows;
-  //   } catch (e) {
-  //     throw e;
-  //   }
-  // }
+async function getFlightsWithin7Days(req: Request, res: Response) {
+  try {
+    const rows = await Flights.queryFlightsUntilDay(7);
+    res.json(rows);
+  } catch (e) {
+    console.error(e);
+  }
 }
 
-export default Flights;
+async function getFlights(req: Request, res: Response) {
+  const source = req.params.from;
+  const destination = req.params.to;
+  const departureDate = req.params.date;
+  const datePlusWeek = format(
+    add(parseISO(departureDate), { weeks: 1 }),
+    'yyyy-MM-dd'
+  );
+  const rows = await Flights.queryFlights(
+    source,
+    destination,
+    departureDate,
+    datePlusWeek
+  );
+  res.json(rows);
+}
+
+export { getFlightsWithin7Days, getFlights };

@@ -10,6 +10,10 @@ import {
   verifyUser,
 } from './controllers/users.controller';
 import removeOldFlights from './middleware/removeOldFlights';
+import {
+  getFlights,
+  getFlightsWithin7Days,
+} from './controllers/flights.controller';
 // routes will import controllers
 
 function routes(app: Express) {
@@ -42,11 +46,11 @@ function routes(app: Express) {
   // delete user
   app.delete('/api/:username', [authorizeAdmin, deleteUser]);
 
-  // get flights for the next 7 days
-  app.get('/api/flights', [removeOldFlights]);
+  // get flights for the next 7 days, this is the default view
+  app.get('/api/flights', [removeOldFlights, getFlightsWithin7Days]);
 
   // get flights by user request
-  app.get('/api/flights/:from-:to/:date');
+  app.get('/api/flights/:from-:to/:date', getFlights);
 }
 
 export default routes;
