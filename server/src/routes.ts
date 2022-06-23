@@ -14,7 +14,7 @@ import {
   getFlights,
   getFlightsWithin7Days,
 } from './controllers/flights.controller';
-// routes will import controllers
+import { bookFlight } from './controllers/bookings.controller';
 
 function routes(app: Express) {
   app.get('/', (req, res) => {
@@ -37,6 +37,7 @@ function routes(app: Express) {
 
   //
   // ---- API ---- //
+  // users
   // get username
   app.get('/api/user', authorize, getUser);
 
@@ -46,11 +47,15 @@ function routes(app: Express) {
   // delete user
   app.delete('/api/:username', [authorizeAdmin, deleteUser]);
 
+  // flights
   // get flights for the next 7 days, this is the default view
   app.get('/api/flights', [removeOldFlights, getFlightsWithin7Days]);
 
   // get flights by user request
   app.get('/api/flights/:from-:to/:date', getFlights);
+
+  // bookings
+  app.post('/user/bookings', [authorize, bookFlight]);
 }
 
 export default routes;
