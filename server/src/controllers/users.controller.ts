@@ -12,7 +12,7 @@ async function createUser(req: Request, res: Response) {
     const password: string = req.body.password;
 
     // check if user exists
-    const result = await User.findUser(username);
+    const result = await User.findDuplicateUser(username);
     if (result.length !== 0) {
       return res.json('User already exists');
     }
@@ -26,6 +26,7 @@ async function createUser(req: Request, res: Response) {
     const user = new User(username, bcryptPassword);
     const rows = await user.insertUser();
     const newUser = rows[0];
+    console.log(newUser);
 
     // generate jwt token
     const token = jwtGenerator(newUser.user_id);
@@ -43,21 +44,22 @@ async function loginUser(req: Request, res: Response) {
     const password: string = req.body.password;
 
     // check if user user exists, if not then throw error
-    const result = await User.findUser(username);
+    const result = await User.findDuplicateUser(username);
+
     if (result.length === 0) {
       return res.status(401).json('Invalid credentials.');
     }
 
-    // check if entered password is the same as db password
+    // check if entered password is the same as encrypted password in database
     const isValidPassword = await bcrypt.compare(password, result[0].password);
     if (!isValidPassword) {
       return res.status(401).json('Invalid credentials.');
     }
     // provide jwt token
-    const token = jwtGenerator(result.user_id);
+    const token = jwtGenerator(result[0].user_id);
     res.json({ token });
   } catch (e) {
-    console.log(e);
+    console.error(e);
     res.status(500).send('Server Error');
   }
 }
@@ -66,9 +68,19 @@ async function verifyUser(req: Request, res: Response) {
   try {
     res.json(true);
   } catch (e) {
-    console.log(e);
+    console.error(e);
     res.status(500).send('Server Error');
   }
 }
 
-export { createUser, loginUser, verifyUser };
+async function getUser(req: Request, res: Response) {
+  try {
+    const result = await User.getUserById(req.user);
+    res.json(result[0].username);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send('Server Error');
+  }
+}
+
+export { createUser, loginUser, verifyUser, getUser };

@@ -2,6 +2,7 @@ import { Express } from 'express';
 import { authorize } from './middleware/authorization';
 import {
   createUser,
+  getUser,
   loginUser,
   verifyUser,
 } from './controllers/users.controller';
@@ -20,6 +21,9 @@ function routes(app: Express) {
 
   // verify credentials
   app.get('/auth/verify', [authorize, verifyUser]);
+
+  // get username
+  app.get('/api/user', authorize, getUser);
 }
 
 export default routes;
