@@ -7,7 +7,8 @@ const uid = new ShortUniqueId({ length: 8 });
 async function bookFlight(req: Request, res: Response) {
   try {
     const reference_id: string = uid();
-    const user_id: string = req.body.user_id;
+    //@ts-ignore
+    const user_id: string = req.user_id;
     const flight_id: string = req.body.flight_id;
 
     await Bookings.insertBooking(reference_id, user_id, flight_id);
@@ -29,4 +30,13 @@ async function removeBooking(req: Request, res: Response) {
   }
 }
 
-export { bookFlight, removeBooking };
+async function getBookings(req: Request, res: Response) {
+  try {
+    //@ts-ignore
+    const rows = await Bookings.getUserBookings(req.user_id);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+export { bookFlight, removeBooking, getBookings };

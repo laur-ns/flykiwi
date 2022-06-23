@@ -15,6 +15,8 @@ async function authorize(req: Request, res: Response, next: NextFunction) {
     const payload = jwt.verify(token, process.env.jwtSecret);
 
     req.user = payload.user;
+    const rows = await User.getUserById(req.user);
+    req.user_id = rows[0].user_id;
 
     next();
   } catch (e) {

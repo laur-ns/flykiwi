@@ -1,0 +1,137 @@
+@font-face {
+  font-family: source-serif-sb;
+  src: url('../../assets/SourceSerifPro-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: fira-sans;
+  src: url('../../assets/FiraSans-Regular.ttf');
+}
+
+.BookFlight {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+}
+
+.BookFlight main {
+  background-color: #26333f;
+  margin-top: 1.5rem;
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.BookFlight form {
+  background-color: #1f2934;
+  display: grid;
+  padding: 1.5rem;
+  width: 37rem;
+  gap: 1.5rem;
+  grid-template-columns: 1fr 0.15fr;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.BookFlight label {
+  position: absolute;
+  color: #abbbf8;
+  font-family: source-serif-sb;
+  padding: 0.5rem;
+}
+
+.BookFlight__datepicker {
+  padding: 2rem 1rem 1rem 1rem;
+  color: white;
+  width: 100%;
+  font-size: 1.5rem;
+  color: #bec8ee;
+  background: none;
+  border: 0.13rem solid #abbbf8;
+  border-radius: 0.3rem;
+  font-family: fira-sans;
+}
+
+.BookFlight__from-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.BookFlight__to-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.date-picker-wrapper {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  width: 100%;
+}
+
+.BookFlight__datepicker {
+  width: 100%;
+}
+
+.switch-wrapper {
+  display: grid;
+  place-items: center;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.BookFlight__switch-button {
+  width: 3.6rem;
+  height: 3.6rem;
+  background-image: url('../../assets/swaparrows.svg');
+  background-repeat: no-repeat;
+  background-color: #9eb614;
+  border-radius: 50rem;
+  background-size: 1.8rem;
+  background-position: center;
+  cursor: pointer;
+}
+
+.BookFlight__switch-button:hover {
+  background-color: #afc91c;
+}
+
+.BookFlight__btn-wrapper {
+  position: relative;
+  margin-bottom: 4.5rem;
+}
+
+.BookFlight__submit {
+  position: absolute;
+  top: -0.5rem;
+  right: 2rem;
+  color:white;
+  background-color: #a7bd03;
+  border: none;
+  padding: 0.8rem 0 0.8rem 0;
+  width: 70%;
+  font-size: 1.4rem;
+  font-family: source-serif-pro-semibold;
+  transition: all 0.15s;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.BookFlight__submit:disabled {
+  cursor: default;
+  background-color:#97a810;
+}
+
+.BookFlight__submit:hover:disabled {
+  cursor: default;
+  background-color:#97a810;
+}
+
+.BookFlight__submit:hover {
+  background-color: #c5db20;
+}

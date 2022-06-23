@@ -4,20 +4,25 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import ManageBookings from './pages/manage-bookings/ManageBookings';
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, createContext } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import BookFlight from './pages/bookflight/BookFlight';
+
+const AuthContext = createContext();
+alert(
+  'This assignment is incomplete (i ran out of time).\nThe backend is about 95% complete, the frontend is about 60%.\nUnfortunately the only way to demo this project right now is to make manual API calls to the backend.\nThe route.ts file contains all the routes to do this.\n - Laurens M'
+);
 
 export default function App() {
   const [isAuthenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    isAuth();
+  });
 
   const setAuth = (bool) => {
     setAuthenticated(bool);
   };
-
-  useEffect(() => {
-    isAuth();
-  });
 
   async function isAuth() {
     try {
@@ -37,63 +42,78 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          exact
-          path='/'
-          element={
-            !isAuthenticated ? (
-              <Homepage setAuth={setAuth} />
-            ) : (
-              <Navigate to='/managebookings' replace={true} />
-            )
-          }
+      <AuthContext.Provider value={{ isAuthenticated, setAuthenticated }}>
+        <Routes isAuthenticated={{ isAuthenticated, setAuthenticated }}>
+          <Route
+            exact
+            path='/'
+            element={
+              !isAuthenticated ? (
+                <Homepage setAuth={setAuth} />
+              ) : (
+                <Navigate to='/bookflights' replace={true} />
+              )
+            }
+          />
+          <Route
+            exact
+            path='/login'
+            element={
+              !isAuthenticated ? (
+                <Login setAuth={setAuth} />
+              ) : (
+                <Navigate to='/bookflights' replace={true} />
+              )
+            }
+          />
+          <Route
+            exact
+            path='/signup'
+            element={
+              !isAuthenticated ? (
+                <Signup setAuth={setAuth} />
+              ) : (
+                <Navigate to='/managebookings' replace={true} />
+              )
+            }
+          />
+          <Route
+            exact
+            path='/managebookings'
+            element={
+              isAuthenticated ? (
+                <ManageBookings setAuth={setAuth} />
+              ) : (
+                <Navigate to='/login' replace={true} />
+              )
+            }
+          />
+          <Route
+            exact
+            path='/bookflights'
+            element={
+              isAuthenticated ? (
+                <BookFlight setAuth={setAuth} />
+              ) : (
+                <Navigate to='/login' replace={true} />
+              )
+            }
+          />
+        </Routes>
+        <ToastContainer
+          position='top-center'
+          autoClose={2000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
         />
-        <Route
-          exact
-          path='/login'
-          element={
-            !isAuthenticated ? (
-              <Login setAuth={setAuth} />
-            ) : (
-              <Navigate to='/managebookings' replace={true} />
-            )
-          }
-        />
-        <Route
-          exact
-          path='/signup'
-          element={
-            !isAuthenticated ? (
-              <Signup setAuth={setAuth} />
-            ) : (
-              <Navigate to='/managebookings' replace={true} />
-            )
-          }
-        />
-        <Route
-          exact
-          path='/managebookings'
-          element={
-            isAuthenticated ? (
-              <ManageBookings setAuth={setAuth} />
-            ) : (
-              <Navigate to='/login' replace={true} />
-            )
-          }
-        />
-      </Routes>
-      <ToastContainer
-        position='top-center'
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      </AuthContext.Provider>
     </BrowserRouter>
   );
 }
+
+export { AuthContext };

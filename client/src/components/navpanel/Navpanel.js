@@ -6,13 +6,13 @@ function Navpanel({ activePanel }) {
     <div className='Navpanel'>
       <div className='Navpanel__container'>
         <Link
-          to='/bookflight'
+          to='/bookflights'
           className={`Navpanel__link ${activePanel === 1 && 'active'}`}
         >
           Book a flight
         </Link>
         <Link
-          to='/managebooking'
+          to='/managebookings'
           className={`Navpanel__link ${activePanel === 2 && 'active'}`}
         >
           Manage bookings

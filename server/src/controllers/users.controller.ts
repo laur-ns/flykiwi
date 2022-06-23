@@ -1,4 +1,4 @@
-// vvv database calls are a pain with typescript, may refactor later vvv
+// TODO: refactor
 // @ts-nocheck
 import { Request, Response, NextFunction } from 'express';
 import User from '../models/User.model';

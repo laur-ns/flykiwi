@@ -28,6 +28,18 @@ class Bookings {
       throw e;
     }
   }
+
+  static async getUserBookings(user_id: string) {
+    try {
+      const { rows } = await query(
+        `SELECT * FROM flight_bookings WHERE user_id = $1`,
+        [user_id]
+      );
+      return rows;
+    } catch (e) {
+      throw e;
+    }
+  }
 }
 
 export default Bookings;
