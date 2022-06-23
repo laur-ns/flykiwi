@@ -37,6 +37,23 @@ class User {
       throw e;
     }
   }
+
+  static async getAllUsers() {
+    try {
+      const { rows } = await query(`SELECT * FROM users`, []);
+      return rows;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static async deleteUser(username: string) {
+    try {
+      await query(`DELETE FROM USERS WHERE username = $1`, [username]);
+    } catch (e) {
+      console.log(e);
+    }
+  }
 }
 
 export default User;

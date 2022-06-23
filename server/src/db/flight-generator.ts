@@ -3,6 +3,28 @@ import query from './database';
 import ShortUniqueId from 'short-unique-id';
 const uid = new ShortUniqueId({ length: 24 });
 
+async function generateFlights() {
+  // will generate flights for 60 days.
+  await query(`DELETE FROM flights *`, []);
+  try {
+    for (let i = 0; i < 15; i++) {
+      // [i] represents the amount of week added to current date
+      let currentDate: Date = add(new Date(), { weeks: i });
+      if (!isSunday(currentDate)) {
+        currentDate = previousSunday(currentDate);
+      }
+      await addSyberJetFlights(currentDate);
+      await addCirrusFlights1(currentDate);
+      await addCirrusFlights2(currentDate);
+      await addHondaJetFlights1(currentDate);
+      await addHondaJetFlights2(currentDate);
+    }
+    await query(`DELETE FROM flights WHERE depart_date < now()`, []);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 async function addFlight({ ...f }: any) {
   try {
     await query(
@@ -218,29 +240,5 @@ async function addHondaJetFlights2(currentDate: Date): Promise<void> {
     destination: 'DF',
   });
 }
-
-async function generateFlights() {
-  // will generate flights for 60 days.
-  try {
-    for (let i = 0; i < 15; i++) {
-      // [i] represents the amount of week added to current date
-      let currentDate: Date = add(new Date(), { weeks: i });
-      if (!isSunday(currentDate)) {
-        currentDate = previousSunday(currentDate);
-      }
-      addSyberJetFlights(currentDate);
-      addCirrusFlights1(currentDate);
-      addCirrusFlights2(currentDate);
-      addHondaJetFlights1(currentDate);
-      addHondaJetFlights2(currentDate);
-    }
-  } catch (e) {
-    console.error(e);
-  }
-}
-
-// text will be something like 'SELECT * FROM $1'
-// params something like this array: ['users'] i.e. the table name
-// $1 => replaced by users in final query
 
 export default generateFlights;

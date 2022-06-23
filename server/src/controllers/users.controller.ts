@@ -26,7 +26,6 @@ async function createUser(req: Request, res: Response) {
     const user = new User(username, bcryptPassword);
     const rows = await user.insertUser();
     const newUser = rows[0];
-    console.log(newUser);
 
     // generate jwt token
     const token = jwtGenerator(newUser.user_id);
@@ -73,6 +72,17 @@ async function verifyUser(req: Request, res: Response) {
   }
 }
 
+async function verifyAdmin(req: Request, res: Response) {
+  try {
+    const rows = await User.getUserById(req.user);
+    if (rows[0].username === 'admin') {
+      res.json(true);
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 async function getUser(req: Request, res: Response) {
   try {
     const result = await User.getUserById(req.user);
@@ -83,4 +93,36 @@ async function getUser(req: Request, res: Response) {
   }
 }
 
-export { createUser, loginUser, verifyUser, getUser };
+async function getUsers(req: Request, res: Response) {
+  try {
+    const result = await User.getAllUsers();
+    res.json(result);
+  } catch (e) {
+    console.error(e);
+    res.status(500).send('Server Error');
+  }
+}
+
+async function deleteUser(req: Request, res: Response) {
+  try {
+    if (req.params.username === 'admin') {
+      res.status(400).json({ message: 'Cannot delete admin!' });
+      return;
+    }
+    await User.deleteUser(req.params.username);
+    res.status(200).send('Success');
+  } catch (e) {
+    console.error(e);
+    res.status(500).send('Server Error');
+  }
+}
+
+export {
+  createUser,
+  loginUser,
+  verifyUser,
+  getUser,
+  verifyAdmin,
+  getUsers,
+  deleteUser,
+};
